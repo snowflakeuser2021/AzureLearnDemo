@@ -4,6 +4,9 @@
 	"parameters": {
 		"factoryName": {
 			"value": "endtoenddatafactorylearning"
+		},
+		"AzureADFContainers01_connectionString": {
+			"value": ""
 		}
 	}
 }

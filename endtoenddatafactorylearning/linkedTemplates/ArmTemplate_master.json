@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "endtoenddatafactorylearning"
 		},
+		"AzureADFContainers01_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureADFContainers01'"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -33,6 +37,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"AzureADFContainers01_connectionString": {
+						"value": "[parameters('AzureADFContainers01_connectionString')]"
 					}
 				}
 			},
