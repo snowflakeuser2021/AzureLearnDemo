@@ -1,0 +1,10 @@
+{
+	"name": "ls_kv_dev_datafactory_end_to_end",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://azuretestkeyvalut01DEV.vault.azure.net/"
+		}
+	}
+}
