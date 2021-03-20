@@ -1,0 +1,9 @@
+{
+	"name": "endtoenddatafactorylearning",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2ff290f2-e71c-4603-9be1-99580442a39d",
+		"tenantId": "0ebac765-64ae-4d6a-bfcd-3657197265a4"
+	}
+}
