@@ -72,6 +72,8 @@
 				"type": "String"
 			}
 		},
-		"annotations": []
+		"annotations": [
+			"Sales"
+		]
 	}
 }
