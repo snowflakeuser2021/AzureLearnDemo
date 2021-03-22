@@ -78,7 +78,7 @@
 			},
 			"Filename": {
 				"type": "string",
-				"defaultValue": "Emp.csv"
+				"defaultValue": "Dept.csv"
 			}
 		},
 		"annotations": []
