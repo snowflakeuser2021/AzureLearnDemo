@@ -36,6 +36,16 @@
 				]
 			}
 		],
+		"parameters": {
+			"Rootpath": {
+				"type": "string",
+				"defaultValue": " adfinput / local / projects"
+			},
+			"Filename": {
+				"type": "string",
+				"defaultValue": "Emp.csv"
+			}
+		},
 		"annotations": []
 	}
 }
