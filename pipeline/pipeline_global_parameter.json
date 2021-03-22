@@ -74,7 +74,7 @@
 		"parameters": {
 			"Rootpath": {
 				"type": "string",
-				"defaultValue": " adfinput/local/projects"
+				"defaultValue": "adfinput/local/projects"
 			},
 			"Filename": {
 				"type": "string",
