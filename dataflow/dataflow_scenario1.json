@@ -12,16 +12,34 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Salesoutput",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "Salesoutput",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
 			"transformations": [
 				{
 					"name": "ConditionalSplit"
 				},
 				{
 					"name": "DerivedColumn1"
+				},
+				{
+					"name": "DerivedColumn2"
 				}
 			],
-			"script": "source(output(\n\t\tSaleDate as string,\n\t\tSalesItem as string,\n\t\tCountry as string,\n\t\tQuantity as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: true,\n\tignoreNoFilesFound: false) ~> source1\nsource1 split(isNull(toDate(SaleDate,'dd-mmm-yyyy')),\n\tdisjoint: false) ~> ConditionalSplit@(ErrorRows, GoodRows)\nConditionalSplit@ErrorRows derive() ~> DerivedColumn1"
+			"script": "source(output(\n\t\tSaleDate as string,\n\t\tSalesItem as string,\n\t\tCountry as string,\n\t\tQuantity as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: true,\n\tignoreNoFilesFound: false) ~> source1\nsource1 split(isNull(toDate(SaleDate,'dd-MMM-yyyy')),\n\tdisjoint: false) ~> ConditionalSplit@(ErrorRows, GoodRows)\nConditionalSplit@ErrorRows derive(Filename = 'SalesIND_2020_May_01.csv',\n\tpartitionBy('hash', 1)) ~> DerivedColumn1\nConditionalSplit@GoodRows derive(Filename = 'SalesIND_2020_May_01.csv') ~> DerivedColumn2\nDerivedColumn1 sink(input(\n\t\tSaleDate as string,\n\t\tSalesItem as string,\n\t\tCountry as string,\n\t\tQuantity as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['Rejected_record.csv'],\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1\nDerivedColumn2 sink(input(\n\t\tSaleDate as string,\n\t\tSalesItem as string,\n\t\tCountry as string,\n\t\tQuantity as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink2"
 		}
 	}
 }
