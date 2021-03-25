@@ -5,12 +5,20 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"name": "source1"
+					"dataset": {
+						"referenceName": "salesdatasetscenario01",
+						"type": "DatasetReference"
+					},
+					"name": "SalesIND"
 				}
 			],
 			"sinks": [],
-			"transformations": [],
-			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1"
+			"transformations": [
+				{
+					"name": "ConditionalSplit"
+				}
+			],
+			"script": "source(output(\n\t\tSaleDate as string,\n\t\tSalesItem as string,\n\t\tCountry as string,\n\t\tQuantity as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> SalesIND\nSalesIND split(isNull(toDate(SaleDate,'dd-mmm-yyyy'))\r\n,\n\tdisjoint: false) ~> ConditionalSplit@(ErrorRows, GoodRows)"
 		}
 	}
 }
