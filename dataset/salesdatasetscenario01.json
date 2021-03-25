@@ -1,0 +1,41 @@
+{
+	"name": "salesdatasetscenario01",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lsdevsecdatafactoryendtoend",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SalesIND_2020_May_01.csv",
+				"folderPath": "input",
+				"container": "scenariobased"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SaleDate",
+				"type": "String"
+			},
+			{
+				"name": "SalesItem",
+				"type": "String"
+			},
+			{
+				"name": "Country",
+				"type": "String"
+			},
+			{
+				"name": "Quantity",
+				"type": "String"
+			}
+		]
+	}
+}
