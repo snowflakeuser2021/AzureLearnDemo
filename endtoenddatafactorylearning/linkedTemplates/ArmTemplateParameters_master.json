@@ -8,6 +8,12 @@
 		"AzureADFContainers01_connectionString": {
 			"value": ""
 		},
+		"ls_kv_dev_datafactory_end_to_end_properties_typeProperties_baseUrl": {
+			"value": "https://azuretestkeyvalut01DEV.vault.azure.net/"
+		},
+		"lsdevsecdatafactoryendtoend_properties_typeProperties_connectionString_secretName": {
+			"value": "sec-dev-datafactoryendtoend"
+		},
 		"containerUri": {
 			"value": ""
 		},

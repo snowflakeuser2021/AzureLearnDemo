@@ -6,18 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "endtoenddatafactorylearning"
-		},
-		"AzureADFContainers01_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureADFContainers01'"
-		},
-		"ls_kv_dev_datafactory_end_to_end_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://azuretestkeyvalut01DEV.vault.azure.net/"
-		},
-		"lsdevsecdatafactoryendtoend_properties_typeProperties_connectionString_secretName": {
-			"type": "string",
-			"defaultValue": "sec-dev-datafactoryendtoend"
 		}
 	},
 	"variables": {
@@ -99,29 +87,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/BinaryDatasetForDeleteActivity')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureADFContainers01')]"
+				"[concat(variables('factoryId'), '/datasets/BinaryDatasetForDeleteActivity')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipeline1_github')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Wait1",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": 1
-						}
-					}
-				],
-				"annotations": []
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pipeline_global_parameter')]",
@@ -193,8 +160,7 @@
 						"outputs": [
 							{
 								"referenceName": "globalparoutput",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					}
@@ -286,8 +252,7 @@
 						"outputs": [
 							{
 								"referenceName": "globalparoutput",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					}
@@ -330,8 +295,7 @@
 						"typeProperties": {
 							"dataset": {
 								"referenceName": "ds_inputFolder",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							},
 							"fieldList": [
 								"childItems"
@@ -429,70 +393,7 @@
 					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureADFContainers01')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Empdataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureADFContainers01",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "Emp.csv",
-						"container": "adfinput"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "mpno",
-						"type": "String"
-					},
-					{
-						"name": "ename",
-						"type": "String"
-					},
-					{
-						"name": "job",
-						"type": "String"
-					},
-					{
-						"name": "mgr",
-						"type": "String"
-					},
-					{
-						"name": "hiredate",
-						"type": "String"
-					},
-					{
-						"name": "sal",
-						"type": "String"
-					},
-					{
-						"name": "comm",
-						"type": "String"
-					},
-					{
-						"name": "deptno",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureADFContainers01')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Global_dataset')]",
@@ -568,9 +469,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureADFContainers01')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/globalparoutput')]",
@@ -612,19 +511,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureADFContainers01')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('AzureADFContainers01_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/ls_kv_dev_datafactory_end_to_end')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -632,7 +518,7 @@
 				"annotations": [],
 				"type": "AzureKeyVault",
 				"typeProperties": {
-					"baseUrl": "[parameters('ls_kv_dev_datafactory_end_to_end_properties_typeProperties_baseUrl')]"
+					"baseUrl": "https://azuretestkeyvalut01DEV.vault.azure.net/"
 				}
 			},
 			"dependsOn": []
@@ -652,7 +538,7 @@
 							"referenceName": "ls_kv_dev_datafactory_end_to_end",
 							"type": "LinkedServiceReference"
 						},
-						"secretName": "[parameters('lsdevsecdatafactoryendtoend_properties_typeProperties_connectionString_secretName')]"
+						"secretName": "sec-dev-datafactoryendtoend"
 					}
 				}
 			},
