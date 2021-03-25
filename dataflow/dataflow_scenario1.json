@@ -9,16 +9,19 @@
 						"referenceName": "salesdatasetscenario01",
 						"type": "DatasetReference"
 					},
-					"name": "SalesIND"
+					"name": "source1"
 				}
 			],
 			"sinks": [],
 			"transformations": [
 				{
 					"name": "ConditionalSplit"
+				},
+				{
+					"name": "DerivedColumn1"
 				}
 			],
-			"script": "source(output(\n\t\tSaleDate as string,\n\t\tSalesItem as string,\n\t\tCountry as string,\n\t\tQuantity as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> SalesIND\nSalesIND split(isNull(toDate(SaleDate,'dd-mmm-yyyy'))\r\n,\n\tdisjoint: false) ~> ConditionalSplit@(ErrorRows, GoodRows)"
+			"script": "source(output(\n\t\tSaleDate as string,\n\t\tSalesItem as string,\n\t\tCountry as string,\n\t\tQuantity as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 split(isNull(toDate(SaleDate,'dd-mmm-yyyy')),\n\tdisjoint: false) ~> ConditionalSplit@(ErrorRows, GoodRows)\nConditionalSplit@ErrorRows derive() ~> DerivedColumn1"
 		}
 	}
 }
