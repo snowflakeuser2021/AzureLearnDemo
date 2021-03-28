@@ -9,12 +9,12 @@
 						"referenceName": "ds_fixedlengthfile",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "readdelimitedfile"
 				}
 			],
 			"sinks": [],
 			"transformations": [],
-			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1"
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> readdelimitedfile"
 		}
 	}
 }
