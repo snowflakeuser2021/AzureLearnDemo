@@ -1,0 +1,27 @@
+{
+	"name": "Readdelimitedfile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lsdevsecdatafactoryendtoend",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Fixedlenthinput.txt",
+				"folderPath": "fixed_length",
+				"container": "adfinput"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			}
+		]
+	}
+}

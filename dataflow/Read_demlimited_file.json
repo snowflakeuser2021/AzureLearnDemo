@@ -6,15 +6,30 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "ds_fixedlengthfile",
+						"referenceName": "Readdelimitedfile",
 						"type": "DatasetReference"
 					},
 					"name": "readdelimitedfile"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
-			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> readdelimitedfile"
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "sinkdataoutput",
+						"type": "DatasetReference"
+					},
+					"name": "sinkdataoutput"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedcolumns"
+				},
+				{
+					"name": "Select1"
+				}
+			],
+			"script": "source(output(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> readdelimitedfile\nreaddelimitedfile derive(empid = substring(Column_1,1,9),\n\t\tdesc = substring(Column_1, 10, 21),\n\t\tflag = substring(Column_1,24, 26)) ~> derivedcolumns\nderivedcolumns select(mapColumn(\n\t\tempid,\n\t\tdesc,\n\t\tflag\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['emp.csv'],\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sinkdataoutput"
 		}
 	}
 }
