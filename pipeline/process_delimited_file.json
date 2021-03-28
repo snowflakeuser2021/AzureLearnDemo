@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "dataflow_scenario1",
+						"referenceName": "Read_demlimited_file",
 						"type": "DataFlowReference"
 					},
 					"compute": {
