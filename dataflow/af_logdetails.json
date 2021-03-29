@@ -6,15 +6,22 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "ds_dummy",
+						"referenceName": "Dummydata",
 						"type": "DatasetReference"
 					},
 					"name": "source"
 				}
 			],
 			"sinks": [],
-			"transformations": [],
-			"script": "parameters{\n\tADFName as string,\n\tPipelineName as string,\n\tStatus as string,\n\tRunid as string,\n\tTriggerName as string\n}\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source"
+			"transformations": [
+				{
+					"name": "DerivedColumn"
+				},
+				{
+					"name": "Select1"
+				}
+			],
+			"script": "parameters{\n\tADFName as string,\n\tPipelineName as string,\n\tStatus as string,\n\tRunid as string,\n\tTriggerName as string\n}\nsource(output(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source\nsource derive(ADFName = $ADFName,\n\t\tPipelinename = $PipelineName,\n\t\tStatus = $Status,\n\t\tRunid = $Runid,\n\t\tTriggername = $TriggerName) ~> DerivedColumn\nDerivedColumn select(mapColumn(\n\t\tADFName,\n\t\tPipelinename,\n\t\tStatus,\n\t\tRunid,\n\t\tTriggername\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1"
 		}
 	}
 }
