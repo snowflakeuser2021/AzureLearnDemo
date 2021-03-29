@@ -26,7 +26,7 @@
 					"name": "SurrogateKeydata"
 				}
 			],
-			"script": "source(output(\n\t\tmpno as string,\n\t\tename as string,\n\t\tjob as string,\n\t\tmgr as string,\n\t\thiredate as string,\n\t\tsal as string,\n\t\tcomm as string,\n\t\tdeptno as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> sourcedata\nsourcedata keyGenerate(output(id as long),\n\tstartAt: 1L) ~> SurrogateKeydata\nSurrogateKeydata sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink"
+			"script": "source(output(\n\t\tmpno as string,\n\t\tename as string,\n\t\tjob as string,\n\t\tmgr as string,\n\t\thiredate as string,\n\t\tsal as string,\n\t\tcomm as string,\n\t\tdeptno as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> sourcedata\nsourcedata keyGenerate(output(id as long),\n\tstartAt: 1L) ~> SurrogateKeydata\nSurrogateKeydata sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['Surkey_key_output.csv'],\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink"
 		}
 	}
 }
