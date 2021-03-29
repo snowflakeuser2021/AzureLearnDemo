@@ -3,10 +3,22 @@
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
-			"sources": [],
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_dummy",
+						"type": "DatasetReference"
+					},
+					"name": "source"
+				}
+			],
 			"sinks": [],
-			"transformations": [],
-			"script": "parameters{\n\tADFName as string,\n\tPipelineName as string,\n\tStatus as string,\n\tRunid as string,\n\tTriggerName as string\n}"
+			"transformations": [
+				{
+					"name": "DerivedColumn"
+				}
+			],
+			"script": "parameters{\n\tADFName as string,\n\tPipelineName as string,\n\tStatus as string,\n\tRunid as string,\n\tTriggerName as string\n}\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source\nsource derive() ~> DerivedColumn"
 		}
 	}
 }
