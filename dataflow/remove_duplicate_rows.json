@@ -6,27 +6,15 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "ds_input_emp",
+						"referenceName": "run_total",
 						"type": "DatasetReference"
 					},
 					"name": "sourcedata"
 				}
 			],
-			"sinks": [
-				{
-					"dataset": {
-						"referenceName": "sinkoutput",
-						"type": "DatasetReference"
-					},
-					"name": "sink"
-				}
-			],
-			"transformations": [
-				{
-					"name": "SurrogateKeydata"
-				}
-			],
-			"script": "source(output(\n\t\tmpno as string,\n\t\tename as string,\n\t\tjob as string,\n\t\tmgr as string,\n\t\thiredate as string,\n\t\tsal as string,\n\t\tcomm as string,\n\t\tdeptno as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> sourcedata\nsourcedata keyGenerate(output(id as long),\n\tstartAt: 1L) ~> SurrogateKeydata\nSurrogateKeydata sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['Surkey_key_output.csv'],\n\tmapColumn(\n\t\tmpno,\n\t\tename,\n\t\tjob,\n\t\tmgr,\n\t\thiredate,\n\t\tsal,\n\t\tcomm,\n\t\tdeptno,\n\t\tid\n\t),\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink"
+			"sinks": [],
+			"transformations": [],
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> sourcedata"
 		}
 	}
 }

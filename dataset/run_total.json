@@ -1,0 +1,23 @@
+{
+	"name": "run_total",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lsdevsecdatafactoryendtoend",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Run_total.txt",
+				"container": "adfinput"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
