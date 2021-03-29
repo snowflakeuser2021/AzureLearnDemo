@@ -6,22 +6,25 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "Target_Surkey",
+						"referenceName": "Read_target",
 						"type": "DatasetReference"
 					},
-					"name": "sourcesurragatekey"
+					"name": "sourcedata"
 				}
 			],
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "Newcol"
+					"name": "DerivedColumn"
 				},
 				{
 					"name": "Aggregate1"
+				},
+				{
+					"name": "Aggregate2"
 				}
 			],
-			"script": "source(output(\n\t\t{7369} as string,\n\t\tSMITH as string,\n\t\tCLERK as string,\n\t\t{7902} as string,\n\t\t{6/13/1993} as string,\n\t\t{800} as string,\n\t\t{0} as string,\n\t\t{20} as string,\n\t\t{1} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> sourcesurragatekey\nsourcesurragatekey derive(dummy = 'dummy') ~> Newcol\nNewcol aggregate(groupBy(dummy),\n\tMaxid = Max(1)) ~> Aggregate1"
+			"script": "source(output(\n\t\tmpno as string,\n\t\tename as string,\n\t\tjob as string,\n\t\tmgr as string,\n\t\thiredate as string,\n\t\tsal as string,\n\t\tcomm as string,\n\t\tdeptno as string,\n\t\tid as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> sourcedata\nsourcedata derive(dummy = 'dummy') ~> DerivedColumn\nAggregate2 aggregate() ~> Aggregate1\nDerivedColumn aggregate() ~> Aggregate2"
 		}
 	}
 }
