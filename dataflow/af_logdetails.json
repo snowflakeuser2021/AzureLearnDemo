@@ -1,12 +1,12 @@
 {
-	"name": "p_audit_log",
+	"name": "af_logdetails",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [],
 			"sinks": [],
 			"transformations": [],
-			"script": ""
+			"script": "parameters{\n\tADFName as string,\n\tPipelineName as string,\n\tStatus as string,\n\tRunid as string,\n\tTriggerName as string\n}"
 		}
 	}
 }
