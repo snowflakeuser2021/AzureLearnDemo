@@ -1,0 +1,27 @@
+{
+	"name": "add_surragate_key",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Target_Surkey",
+						"type": "DatasetReference"
+					},
+					"name": "sourcesurragatekey"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "Newcol"
+				},
+				{
+					"name": "Aggregate1"
+				}
+			],
+			"script": "source(output(\n\t\t{7369} as string,\n\t\tSMITH as string,\n\t\tCLERK as string,\n\t\t{7902} as string,\n\t\t{6/13/1993} as string,\n\t\t{800} as string,\n\t\t{0} as string,\n\t\t{20} as string,\n\t\t{1} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> sourcesurragatekey\nsourcesurragatekey derive(dummy = 'dummy') ~> Newcol\nNewcol aggregate(groupBy(dummy),\n\tMaxid = Max(1)) ~> Aggregate1"
+		}
+	}
+}

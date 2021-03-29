@@ -1,0 +1,12 @@
+{
+	"name": "Allempdataflow_incremental",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [],
+			"script": ""
+		}
+	}
+}
