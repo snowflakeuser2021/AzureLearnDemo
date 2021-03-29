@@ -1,0 +1,36 @@
+{
+	"name": "runsourcedata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lsdevsecdatafactoryendtoend",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Run_total.txt",
+				"container": "adfinput"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "po",
+				"type": "String"
+			},
+			{
+				"name": "itemname",
+				"type": "String"
+			},
+			{
+				"name": "quantity",
+				"type": "String"
+			}
+		]
+	}
+}

@@ -6,15 +6,22 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "run_total",
+						"referenceName": "runsourcedata",
 						"type": "DatasetReference"
 					},
-					"name": "sourcedata"
+					"name": "source"
 				}
 			],
 			"sinks": [],
-			"transformations": [],
-			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> sourcedata"
+			"transformations": [
+				{
+					"name": "Window1"
+				},
+				{
+					"name": "Window2"
+				}
+			],
+			"script": "source(output(\n\t\tpo as string,\n\t\titemname as string,\n\t\tquantity as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source\nWindow2 window() ~> Window1\nsource window() ~> Window2"
 		}
 	}
 }
