@@ -56,7 +56,7 @@
 		],
 		"variables": {
 			"EmailArray": {
-				"type": "String"
+				"type": "Array"
 			},
 			"EmailString": {
 				"type": "String"
