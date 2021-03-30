@@ -1,5 +1,5 @@
 {
-	"name": "array_to_string_using_json",
+	"name": "array_to_string_using_join",
 	"properties": {
 		"activities": [
 			{
@@ -31,6 +31,26 @@
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEachEmail",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "LookupEmail",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('LookupEmail').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true
 				}
 			}
 		],
