@@ -54,6 +54,14 @@
 				}
 			}
 		],
+		"variables": {
+			"EmailArray": {
+				"type": "String"
+			},
+			"EmailString": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
