@@ -80,7 +80,7 @@
 							"typeProperties": {
 								"variableName": "TempEmails",
 								"value": {
-									"value": "concat(item().Email,';',@variables('Emails'))",
+									"value": "@concat(item().Email,';',variables('Emails'))",
 									"type": "Expression"
 								}
 							}
