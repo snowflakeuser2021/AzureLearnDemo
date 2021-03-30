@@ -82,7 +82,18 @@
 					"expression": {
 						"value": "@equals(activity('Get Metadata').output.structure,activity('Get_emp_ref_schema').output.structure)",
 						"type": "Expression"
-					}
+					},
+					"ifTrueActivities": [
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					]
 				}
 			}
 		],
