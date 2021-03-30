@@ -55,8 +55,35 @@
 						{
 							"name": "Set emails",
 							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Settmpemails",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Emails",
+								"value": {
+									"value": "@variables('TempEmails')",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Settmpemails",
+							"type": "SetVariable",
 							"dependsOn": [],
-							"userProperties": []
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "TempEmails",
+								"value": {
+									"value": "concat(item().Email,';',@variables('Emails'))",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
@@ -64,6 +91,9 @@
 		],
 		"variables": {
 			"Emails": {
+				"type": "String"
+			},
+			"TempEmails": {
 				"type": "String"
 			}
 		},
