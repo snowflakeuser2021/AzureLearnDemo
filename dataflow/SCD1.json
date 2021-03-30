@@ -26,7 +26,7 @@
 					"name": "AlterRow"
 				}
 			],
-			"script": "source(output(\n\t\tname as string,\n\t\tgender as string,\n\t\tdepartment as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> SCD1\nSCD1 alterRow(updateIf(1==1)) ~> AlterRow\nAlterRow sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> SCD1output"
+			"script": "source(output(\n\t\tname as string,\n\t\tgender as string,\n\t\tdepartment as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> SCD1\nSCD1 alterRow(updateIf(1==1)) ~> AlterRow\nAlterRow sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:[''],\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> SCD1output"
 		}
 	}
 }

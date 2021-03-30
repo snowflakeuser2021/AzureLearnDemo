@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "Latestempdata.csv",
 				"folderPath": "SCD1_output",
 				"container": "adfinput"
 			},
