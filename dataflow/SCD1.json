@@ -1,0 +1,32 @@
+{
+	"name": "SCD1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SCD1_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "SCD1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SCD1output_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "SCD1output"
+				}
+			],
+			"transformations": [
+				{
+					"name": "AlterRow"
+				}
+			],
+			"script": "source(output(\n\t\tname as string,\n\t\tgender as string,\n\t\tdepartment as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> SCD1\nSCD1 alterRow(updateIf(1==1)) ~> AlterRow\nAlterRow sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> SCD1output"
+		}
+	}
+}
