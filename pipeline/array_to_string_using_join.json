@@ -50,8 +50,36 @@
 						"value": "@activity('LookupEmail').output.value",
 						"type": "Expression"
 					},
-					"isSequential": true
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Append variable",
+							"type": "AppendVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "EmailArray",
+								"value": {
+									"value": "@item().Email",
+									"type": "Expression"
+								}
+							}
+						}
+					]
 				}
+			},
+			{
+				"name": "SetEmailString",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ForEachEmail",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": []
 			}
 		],
 		"variables": {
