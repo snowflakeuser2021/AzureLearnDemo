@@ -79,7 +79,14 @@
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "EmailString",
+					"value": {
+						"value": "@join(variables('EmailArray'),';')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"variables": {
