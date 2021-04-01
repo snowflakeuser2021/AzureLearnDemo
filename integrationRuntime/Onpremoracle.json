@@ -1,0 +1,7 @@
+{
+	"name": "Onpremoracle",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "Onpremoracle"
+	}
+}
