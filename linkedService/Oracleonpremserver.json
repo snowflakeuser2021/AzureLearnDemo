@@ -1,0 +1,16 @@
+{
+	"name": "Oracleonpremserver",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "Oracle",
+		"typeProperties": {
+			"connectionString": "host=localhost;port=1521;servicename=oracle;user id=ot",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiOWRhNzBkNC0wZWJjLTQyODUtOTVkYy1kMWY5MTVjMDBlMjQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "Onpremoracle",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
