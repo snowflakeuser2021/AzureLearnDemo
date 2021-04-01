@@ -57,7 +57,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@greater(activity('Lookup').output.childItems.value.COUNT,0)",
+									"value": "@greater(activity('Lookup').output.value.COUNT,0)",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
