@@ -30,7 +30,7 @@
 								"source": {
 									"type": "OracleSource",
 									"oracleReaderQuery": {
-										"value": "@concat('select count(1) as count from',item())",
+										"value": "@concat(' select count(1) as count from ',item())",
 										"type": "Expression"
 									},
 									"partitionOption": "None",
