@@ -46,7 +46,8 @@
 			"Tablename": {
 				"type": "Array",
 				"defaultValue": [
-					"['CONTACTS_TEMP','CONTACTS']"
+					"CONTACTS_TEMP",
+					"CONTACTS"
 				]
 			}
 		},
