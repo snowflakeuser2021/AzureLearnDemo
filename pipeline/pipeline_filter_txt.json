@@ -48,6 +48,10 @@
 					"items": {
 						"value": "@activity('Get Metadata').output.Childitems",
 						"type": "Expression"
+					},
+					"condition": {
+						"value": "@endswith(item().name,'txt')",
+						"type": "Expression"
 					}
 				}
 			}
