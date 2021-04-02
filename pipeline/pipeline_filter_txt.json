@@ -134,7 +134,13 @@
 							"outputs": [
 								{
 									"referenceName": "dynamicwriteout",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"dynamicoutputfile": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
