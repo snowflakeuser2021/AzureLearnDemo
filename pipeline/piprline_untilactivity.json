@@ -40,7 +40,19 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": []
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "OracleSource",
+									"oracleReaderQuery": "select status from ot.t_status",
+									"partitionOption": "None",
+									"queryTimeout": "02:00:00"
+								},
+								"dataset": {
+									"referenceName": "OracleTable_statusFlag",
+									"type": "DatasetReference"
+								}
+							}
 						}
 					],
 					"timeout": "7.00:00:00"
