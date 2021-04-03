@@ -1,16 +1,8 @@
 {
 	"name": "OracleTable1",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "Oracleonpremserver",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "OracleTable",
-		"schema": [],
-		"typeProperties": {
-			"schema": "OT",
-			"table": "CONTACTS"
-		}
+		"schema": []
 	}
 }

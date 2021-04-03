@@ -12,6 +12,49 @@
 						"value": "@bool(variables('UntilFlag'))",
 						"type": "Expression"
 					},
+					"activities": [
+						{
+							"name": "Wait",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 2
+							}
+						},
+						{
+							"name": "Lookup_onprem",
+							"type": "Lookup",
+							"dependsOn": [
+								{
+									"activity": "Wait",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "OracleSource",
+									"partitionOption": "None",
+									"queryTimeout": "02:00:00"
+								},
+								"dataset": {
+									"referenceName": "OracleTable1",
+									"type": "DatasetReference"
+								},
+								"firstRowOnly": true
+							}
+						}
+					],
 					"timeout": "7.00:00:00"
 				}
 			}
