@@ -1,0 +1,8 @@
+{
+	"name": "OracleTable_statusFlag",
+	"properties": {
+		"annotations": [],
+		"type": "OracleTable",
+		"schema": []
+	}
+}
