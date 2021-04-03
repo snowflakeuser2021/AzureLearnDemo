@@ -1,8 +1,16 @@
 {
 	"name": "OracleTable_statusFlag",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Oracleonpremserver",
+			"type": "LinkedServiceReference"
+		},
 		"annotations": [],
 		"type": "OracleTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": "OT",
+			"table": "T_STATUS"
+		}
 	}
 }
