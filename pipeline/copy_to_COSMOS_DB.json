@@ -15,8 +15,19 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "OracleSource",
+						"partitionOption": "None",
+						"queryTimeout": "02:00:00"
+					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "OracleTable_onprem_ot",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []

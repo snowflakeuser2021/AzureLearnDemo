@@ -1,0 +1,12 @@
+{
+	"name": "OracleTable_onprem_ot",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Oracleonpremserver",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "OracleTable",
+		"schema": []
+	}
+}
