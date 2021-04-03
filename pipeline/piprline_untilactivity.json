@@ -3,11 +3,15 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Until1",
+				"name": "Until",
 				"type": "Until",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
+					"expression": {
+						"value": "@bool(variables('UntilFlag'))",
+						"type": "Expression"
+					},
 					"timeout": "7.00:00:00"
 				}
 			}
