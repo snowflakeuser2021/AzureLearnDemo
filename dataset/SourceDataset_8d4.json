@@ -1,0 +1,18 @@
+{
+	"name": "SourceDataset_8d4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lsdevsecdatafactoryendtoend",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "*.txt",
+				"container": "incremenatalload"
+			}
+		}
+	}
+}
