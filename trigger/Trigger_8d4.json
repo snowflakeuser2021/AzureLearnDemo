@@ -1,0 +1,34 @@
+{
+	"name": "Trigger_8d4",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Copy_incremenatal_load",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"windowStart": {
+						"type": "Expression",
+						"value": "@{addminutes(trigger().scheduledTime, -2)}"
+					},
+					"windowEnd": {
+						"type": "Expression",
+						"value": "@trigger().scheduledTime"
+					}
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 2,
+				"startTime": "2021-04-05T16:36:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
