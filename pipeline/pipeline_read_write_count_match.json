@@ -59,6 +59,25 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Copy data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('Copy data').output.rowsRead,activity('Copy data').output.rowsCopied)",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"annotations": []
